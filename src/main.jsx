@@ -7,11 +7,18 @@ import "./assets/global.css";
 import Home from "./pages/Home.jsx";
 import Shop from "./pages/Shop.jsx";
 import Cart from "./pages/Cart.jsx";
+import RootLayout from "./layouts/RootLayout.jsx";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "shop", element: <Shop /> },
-  { path: "cart", element: <Cart /> },
+  {
+    path: "/",
+    Component: RootLayout,
+    children: [
+      { index: true, Component: Home },
+      { path: "shop", Component: Shop },
+      { path: "cart", Component: Cart },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 
-const productsReducer = (state, action) => {
+const productReducer = (state, action) => {
   switch (action.type) {
     case "FETCH_START": {
       return { ...state, isLoading: true, error: null };
@@ -17,7 +17,7 @@ const productsReducer = (state, action) => {
 };
 
 const useProduct = () => {
-  const [state, dispatch] = useReducer(productsReducer, {
+  const [state, dispatch] = useReducer(productReducer, {
     data: [],
     isLoading: false,
     error: null,

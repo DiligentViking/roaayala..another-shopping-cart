@@ -1,4 +1,4 @@
-import { Container } from "../components";
+import { Container, ProductCard } from "../components";
 import useProduct from "../hooks/useProduct";
 
 function Shop() {
@@ -9,12 +9,7 @@ function Shop() {
       <Container>
         <div>
           {products.map((product) => (
-            <div key={product.id}>
-              <div></div>
-              <img src={product.image} alt={product.title} />
-              <h3> {product.title}</h3>
-              <span>$ {product.price}</span>
-            </div>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </Container>

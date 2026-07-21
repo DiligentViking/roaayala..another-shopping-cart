@@ -1,4 +1,4 @@
-import { Container, ProductCard } from "../components";
+import { Container, ProductCard, ProductsContainer } from "../components";
 import useProduct from "../hooks/useProduct";
 
 function Shop() {
@@ -7,11 +7,11 @@ function Shop() {
   return (
     <div>
       <Container>
-        <div>
+        <ProductsContainer>
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-        </div>
+        </ProductsContainer>
       </Container>
     </div>
   );

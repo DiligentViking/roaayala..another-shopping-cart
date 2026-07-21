@@ -1,0 +1,27 @@
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.productsContainer > * {
+  flex: 0 0 100%;
+}
+
+@media (min-width: 40rem) {
+  .productsContainer > * {
+    flex: 0 0 calc((100% - (var(--space-8) * 1)) / 2);
+  }
+}
+
+@media (min-width: 48rem) {
+  .productsContainer > * {
+    flex: 0 0 calc((100% - (var(--space-8) * 2)) / 3);
+  }
+}
+
+@media (min-width: 64rem) {
+  .productsContainer > * {
+    flex: 0 0 calc((100% - (var(--space-8) * 3)) / 4);
+  }
+}

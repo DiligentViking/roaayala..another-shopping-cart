@@ -1,21 +1,28 @@
 import { Link } from "react-router";
 import { Container } from "..";
+import styles from "./Navbar.module.css";
 
 function Navbar() {
+  const links = [
+    { id: 0, path: "/", name: "Home" },
+    { id: 1, path: "shop", name: "Shop" },
+    { id: 2, path: "cart", name: "Cart" },
+  ];
   return (
-    <nav>
+    <nav className={styles.navbar}>
       <Container>
-        <ul>
-          <li>
-            <Link to={"/"}>Home</Link>
-          </li>
-          <li>
-            <Link to={"shop"}>Shop</Link>
-          </li>
-          <li>
-            <Link to={"cart"}>Cart</Link>
-          </li>
-        </ul>
+        <div className={styles.wrapper}>
+          <h1 className={styles.siteTitle}>GoShop</h1>
+          <ul className={styles.lists}>
+            {links.map((link) => (
+              <li key={link.id} className={styles.list}>
+                <Link to={link.path} className={styles.link}>
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Container>
     </nav>
   );

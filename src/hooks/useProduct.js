@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useMemo, useReducer } from "react";
 
 const productReducer = (state, action) => {
   switch (action.type) {
@@ -45,7 +45,16 @@ const useProduct = () => {
     fetchProducts();
   }, []);
 
-  return state;
+  const productCategories = useMemo(() => {
+    return [...new Set(state.data.map((p) => p.category))];
+  }, [state.data]);
+
+  return {
+    products: state.data,
+    productCategories,
+    isLoading: state.isLoading,
+    error: state.error,
+  };
 };
 
 export default useProduct;

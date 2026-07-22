@@ -16,8 +16,17 @@ const cartReducer = (state, action) => {
 };
 
 const useCart = () => {
-  const [state, dispatch] = useReducer(cartReducer, { data: [] });
-  return state;
+  const [state, dispatch] = useReducer(cartReducer, {
+    data: [],
+    totalItems: 0,
+    totalPrices: 0,
+  });
+
+  return {
+    cart: state.data,
+    totalItems: state.totalItems,
+    totalPrices: state.totalPrices,
+  };
 };
 
 export default useCart;

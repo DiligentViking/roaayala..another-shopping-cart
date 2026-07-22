@@ -9,6 +9,21 @@
   --space-7: 1.75rem;
   --space-8: 2rem;
 
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  --text: oklch(20.5% 0 none);
+  --text-muted: oklch(37.1% 0 none);
+
   /* 
   breakpoint-sm: 640px / 40rem
   breakpoint-md: 768px / 48rem
@@ -49,10 +64,12 @@
 }
 
 body {
+  font-family: var(--font-sans);
   /* 4. Increase line-height */
   line-height: 1.5;
   /* 5. Improve text rendering */
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* 6. Improve media defaults */

@@ -1,5 +1,5 @@
 .navbar {
-  padding: var(--space-4) 0;
+  padding: var(--space-8) 0;
 }
 
 .wrapper {
@@ -9,20 +9,44 @@
 }
 
 .siteTitle {
-  font-size: 1.5rem;
+  font-size: var(--text-xl);
   line-height: 1.1;
 }
 
 .lists {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   display: flex;
-  gap: var(--space-4);
-}
 
-.list {
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
 }
 
 .link {
+  color: var(--text);
   text-decoration: none;
+}
+
+.list {
+  font-size: var(--text-lg);
+  border-radius: 100rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.list.active {
+  background-color: var(--primary);
+  padding: var(--space-2) var(--space-6);
+}
+
+.list > span {
+  font-weight: 600;
+}
+
+.list.active > span {
+  color: white;
 }

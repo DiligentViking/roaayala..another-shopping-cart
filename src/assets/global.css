@@ -71,6 +71,7 @@
 }
 
 body {
+  color: var(--text);
   font-family: var(--font-sans);
   /* 4. Increase line-height */
   line-height: 1.5;

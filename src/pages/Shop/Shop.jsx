@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Container, ProductCard, ProductsContainer } from "../components";
-import useProduct from "../hooks/useProduct";
+import { Container, ProductCard, ProductsContainer } from "../../components";
+import { useProduct } from "../../hooks";
 
 import styles from "./Shop.module.css";
 

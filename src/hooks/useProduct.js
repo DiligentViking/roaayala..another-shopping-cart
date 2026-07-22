@@ -46,7 +46,12 @@ const useProduct = () => {
   }, []);
 
   const productCategories = useMemo(() => {
-    return [...new Set(state.data.map((p) => p.category))];
+    const uniqueCategory = [...new Set(state.data.map((p) => p.category))];
+
+    return uniqueCategory.map((category) => ({
+      id: crypto.randomUUID(),
+      name: category,
+    }));
   }, [state.data]);
 
   return {

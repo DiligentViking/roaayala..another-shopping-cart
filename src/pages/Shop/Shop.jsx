@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Container, ProductCard, ProductsContainer } from "../../components";
+import {
+  CategoriesContainer,
+  Container,
+  ProductCard,
+  ProductsContainer,
+} from "../../components";
 import { useProduct } from "../../hooks";
 
 import styles from "./Shop.module.css";
@@ -15,25 +20,16 @@ function Shop() {
   return (
     <div className={styles.shop}>
       <Container>
-        <div>
-          <ul
-            onClick={(e) => {
-              const target = e.target.closest("li");
-
-              if (!target) return;
-
-              const targetName = target.getAttribute("data-category");
-              setActiveCategory(targetName === "null" ? null : targetName);
-            }}
-          >
-            <li data-category="null">All</li>
-            {productCategories.map((category) => (
-              <li key={category.id} data-category={category.name}>
-                {category.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {isLoading ? (
+          <>Loading...</>
+        ) : (
+          <CategoriesContainer
+            productCategories={productCategories}
+            setActiveCategory={(activeCategory) =>
+              setActiveCategory(activeCategory)
+            }
+          />
+        )}
 
         <ProductsContainer>
           {isLoading ? (

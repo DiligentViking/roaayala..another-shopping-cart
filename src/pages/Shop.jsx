@@ -1,11 +1,13 @@
 import { Container, ProductCard, ProductsContainer } from "../components";
 import useProduct from "../hooks/useProduct";
 
+import styles from "./Shop.module.css";
+
 function Shop() {
   const { data: products } = useProduct();
 
   return (
-    <div>
+    <div className={styles.shop}>
       <Container>
         <ProductsContainer>
           {products.map((product) => (

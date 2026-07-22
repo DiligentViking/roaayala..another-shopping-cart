@@ -13,7 +13,7 @@ function ProductCard({ product }) {
 
       <div className={styles.cardInfo}>
         <h3 className={styles.cardInfoTitle}>{product.title}</h3>
-        <span className={styles.cartInfoPrice}>$ {product.price}</span>
+        <span className={styles.cardInfoPrice}>$ {product.price}</span>
       </div>
 
       <div className={styles.cardActions}>

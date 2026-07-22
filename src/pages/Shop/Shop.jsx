@@ -20,26 +20,29 @@ function Shop() {
   return (
     <div className={styles.shop}>
       <Container>
-        {isLoading ? (
-          <>Loading...</>
-        ) : (
-          <CategoriesContainer
-            productCategories={productCategories}
-            setActiveCategory={(activeCategory) =>
-              setActiveCategory(activeCategory)
-            }
-          />
-        )}
-
-        <ProductsContainer>
+        <div className={styles.shopContainer}>
           {isLoading ? (
             <>Loading...</>
           ) : (
-            displayedProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))
+            <CategoriesContainer
+              productCategories={productCategories}
+              activeCategory={activeCategory}
+              setActiveCategory={(activeCategory) =>
+                setActiveCategory(activeCategory)
+              }
+            />
           )}
-        </ProductsContainer>
+
+          <ProductsContainer>
+            {isLoading ? (
+              <>Loading...</>
+            ) : (
+              displayedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            )}
+          </ProductsContainer>
+        </div>
       </Container>
     </div>
   );

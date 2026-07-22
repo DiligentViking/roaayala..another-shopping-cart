@@ -1,6 +1,13 @@
-function CategoriesContainer({ productCategories, setActiveCategory }) {
+import styles from "./CategoriesContainer.module.css";
+
+function CategoriesContainer({
+  productCategories,
+  activeCategory,
+  setActiveCategory,
+}) {
   return (
     <ul
+      className={styles.categories}
       onClick={(e) => {
         const target = e.target.closest("li");
 
@@ -10,9 +17,18 @@ function CategoriesContainer({ productCategories, setActiveCategory }) {
         setActiveCategory(targetName === "null" ? null : targetName);
       }}
     >
-      <li data-category="null">All</li>
+      <li
+        data-category="null"
+        className={`${styles.category} ${activeCategory === null ? styles.active : ""}`}
+      >
+        All
+      </li>
       {productCategories.map((category) => (
-        <li key={category.id} data-category={category.name}>
+        <li
+          key={category.id}
+          data-category={category.name}
+          className={`${styles.category} ${activeCategory === category.name ? styles.active : ""}`}
+        >
           {category.name}
         </li>
       ))}

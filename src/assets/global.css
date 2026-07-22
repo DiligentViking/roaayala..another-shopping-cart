@@ -24,6 +24,13 @@
   --text: oklch(20.5% 0 none);
   --text-muted: oklch(37.1% 0 none);
 
+  --primary: oklch(70.4% 0.14 182.503);
+  --primary-subtle: oklch(91% 0.096 180.426);
+  --primary-strong: oklch(51.1% 0.096 186.391);
+
+  --bg: oklch(100% 0.00011 271.152);
+  --bg-secondary: oklch(92.2% 0 none);
+
   /* 
   breakpoint-sm: 640px / 40rem
   breakpoint-md: 768px / 48rem

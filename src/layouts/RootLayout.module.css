@@ -1,0 +1,10 @@
+.rootLayout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+}

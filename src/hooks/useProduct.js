@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useCallback, useEffect, useMemo, useReducer } from "react";
 
 const productReducer = (state, action) => {
   switch (action.type) {
@@ -23,27 +23,27 @@ const useProduct = () => {
     error: null,
   });
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      dispatch({ type: "FETCH_START" });
+  const fetchProducts = useCallback(async () => {
+    dispatch({ type: "FETCH_START" });
 
-      try {
-        const res = await fetch("https://fakestoreapi.com/products");
+    try {
+      const res = await fetch("https://fakestoreapi.com/products");
 
-        if (!res.ok) {
-          throw new Error("Cannot fetch products");
-        }
-
-        const result = await res.json();
-
-        dispatch({ type: "FETCH_SUCCESS", payload: result });
-      } catch (error) {
-        dispatch({ type: "FETCH_ERROR", payload: error.message });
+      if (!res.ok) {
+        throw new Error("Cannot fetch products");
       }
-    };
 
-    fetchProducts();
+      const result = await res.json();
+
+      dispatch({ type: "FETCH_SUCCESS", payload: result });
+    } catch (error) {
+      dispatch({ type: "FETCH_ERROR", payload: error.message });
+    }
   }, []);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
   const productCategories = useMemo(() => {
     const uniqueCategory = [...new Set(state.data.map((p) => p.category))];
@@ -59,6 +59,7 @@ const useProduct = () => {
     productCategories,
     isLoading: state.isLoading,
     error: state.error,
+    refecthProducts: fetchProducts,
   };
 };
 

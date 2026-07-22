@@ -8,10 +8,13 @@ import {
 import { useProduct } from "../../hooks";
 
 import styles from "./Shop.module.css";
+import { useOutletContext } from "react-router";
 
 function Shop() {
   const { products, productCategories, isLoading } = useProduct();
   const [activeCategory, setActiveCategory] = useState(null);
+
+  const { cart, totalItems, totalPrices, addToCart } = useOutletContext();
 
   const displayedProducts = activeCategory
     ? products.filter((product) => product.category === activeCategory)
@@ -38,7 +41,12 @@ function Shop() {
               <>Loading...</>
             ) : (
               displayedProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  cart={cart}
+                  addToCart={addToCart}
+                />
               ))
             )}
           </ProductsContainer>

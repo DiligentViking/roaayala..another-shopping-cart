@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import styles from "./ProductCard.module.css";
-import { Minus, Plus } from "lucide-react";
+
+import { ItemCounter } from "../";
 
 function ProductCard({ product, addToCart, removeFromCart, cart }) {
   const cartItem = cart.find((item) => item.id === product.id);
@@ -21,27 +22,12 @@ function ProductCard({ product, addToCart, removeFromCart, cart }) {
         </div>
 
         <div className={styles.cardActions}>
-          <div>
-            {cartItem && (
-              <>
-                <button
-                  onClick={() => {
-                    removeFromCart(product.id);
-                  }}
-                >
-                  {<Minus size={16} />}
-                </button>
-                <span>{cartItem.quantity}</span>
-              </>
-            )}
-            <button
-              onClick={() => {
-                addToCart(product);
-              }}
-            >
-              {<Plus size={16} />}
-            </button>
-          </div>
+          <ItemCounter
+            product={product}
+            cartItem={cartItem}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+          />
         </div>
       </div>
     </Link>

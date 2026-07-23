@@ -1,0 +1,34 @@
+.itemCounter {
+  height: 2rem;
+  width: 2rem;
+
+  background-color: var(--primary);
+
+  border-radius: 100rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.itemCounter.active {
+  width: 6rem;
+}
+
+.itemCounter > span {
+  color: white;
+}
+
+.button {
+  cursor: pointer;
+
+  border: none;
+  background-color: transparent;
+  color: white;
+
+  padding: 0;
+
+  /* background-color: transparent;
+  color: white; */
+}

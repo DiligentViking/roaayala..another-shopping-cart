@@ -63,7 +63,7 @@
 
   color: white;
   background-color: var(--primary);
-  line-height: 1;
+  line-height: 0;
 
   border-radius: 100rem;
 

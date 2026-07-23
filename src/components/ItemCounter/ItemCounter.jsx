@@ -1,11 +1,14 @@
 import { Minus, Plus } from "lucide-react";
 
+import styles from "./ItemCounter.module.css";
+
 function ItemCounter({ product, cartItem, addToCart, removeFromCart }) {
   return (
-    <div>
+    <div className={`${styles.itemCounter} ${cartItem && styles.active} `}>
       {cartItem && (
         <>
           <button
+            className={styles.button}
             onClick={() => {
               removeFromCart(product.id);
             }}
@@ -16,6 +19,7 @@ function ItemCounter({ product, cartItem, addToCart, removeFromCart }) {
         </>
       )}
       <button
+        className={styles.button}
         onClick={() => {
           addToCart(product);
         }}

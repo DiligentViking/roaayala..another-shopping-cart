@@ -43,10 +43,36 @@
   padding: var(--space-2) var(--space-6);
 }
 
-.list > span {
+.icon,
+.name {
   font-weight: 600;
 }
 
-.list.active > span {
+.list.active > .icon,
+.list.active > .name {
   color: white;
+}
+
+.counter {
+  align-self: self-start;
+
+  font-size: 0.675rem;
+  font-weight: 700;
+  height: var(--space-4);
+  width: var(--space-4);
+
+  color: white;
+  background-color: var(--primary);
+  line-height: 1;
+
+  border-radius: 100rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list.active > .counter {
+  background-color: white;
+  color: var(--primary);
 }

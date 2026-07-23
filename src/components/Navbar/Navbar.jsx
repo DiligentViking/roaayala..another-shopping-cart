@@ -3,7 +3,7 @@ import { Container } from "..";
 import styles from "./Navbar.module.css";
 import { Home, ShoppingCart, Store } from "lucide-react";
 
-function Navbar() {
+function Navbar({ cart }) {
   const links = [
     { id: 0, path: "/", name: "Home", icon: <Home size={20} /> },
     { id: 1, path: "shop", name: "Shop", icon: <Store size={20} /> },
@@ -22,8 +22,14 @@ function Navbar() {
                     className={`${styles.list} ${isActive ? styles.active : ""}`}
                   >
                     <>
-                      {isActive && <span>{link.icon}</span>}
-                      <span>{link.name}</span>
+                      {isActive && (
+                        <span className={styles.icon}>{link.icon}</span>
+                      )}
+                      <span className={styles.name}>{link.name}</span>
+
+                      {link.name === "Cart" && cart.length > 0 && (
+                        <span className={styles.counter}>{cart.length}</span>
+                      )}
                     </>
                   </li>
                 )}

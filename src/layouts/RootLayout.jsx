@@ -9,7 +9,7 @@ function RootLayout() {
 
   return (
     <div className={styles.rootLayout}>
-      <Navbar />
+      <Navbar cart={cart} />
       <main className={styles.main}>
         <Outlet
           context={{ cart, totalItems, totalPrices, addToCart, removeFromCart }}

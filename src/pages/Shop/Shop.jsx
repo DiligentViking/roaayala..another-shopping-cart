@@ -14,7 +14,7 @@ function Shop() {
   const { products, productCategories, isLoading } = useProduct();
   const [activeCategory, setActiveCategory] = useState(null);
 
-  const { cart, totalItems, totalPrices, addToCart } = useOutletContext();
+  const { cart, addToCart, removeFromCart } = useOutletContext();
 
   const displayedProducts = activeCategory
     ? products.filter((product) => product.category === activeCategory)
@@ -46,6 +46,7 @@ function Shop() {
                   product={product}
                   cart={cart}
                   addToCart={addToCart}
+                  removeFromCart={removeFromCart}
                 />
               ))
             )}

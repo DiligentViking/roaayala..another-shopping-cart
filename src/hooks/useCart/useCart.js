@@ -39,8 +39,30 @@ const cartReducer = (state, action) => {
         totalPrices: newTotals.totalPrices,
       };
     }
-    case "DELETE_ITEM": {
-      return;
+    case "REMOVE_ITEM": {
+      const itemId = action.payload;
+
+      const itemInCart = state.data.find((item) => item.id === itemId);
+
+      if (!itemInCart) return state;
+
+      let newData;
+
+      if (itemInCart.quantity > 1) {
+        newData = state.data.map((item) =>
+          item.id === itemId ? { ...item, quantity: item.quantity - 1 } : item,
+        );
+      } else {
+        newData = state.data.filter((item) => item.id !== itemId);
+      }
+
+      const newTotals = calculateTotals(newData);
+      return {
+        ...state,
+        data: newData,
+        totalItems: newTotals.totalItems,
+        totalPrices: newTotals.totalPrices,
+      };
     }
 
     default: {
@@ -59,11 +81,16 @@ const useCart = () => {
   const addToCart = (product) =>
     dispatch({ type: "ADD_ITEM", payload: product });
 
+  const removeFromCart = (itemId) => {
+    dispatch({ type: "REMOVE_ITEM", payload: itemId });
+  };
+
   return {
     cart: state.data,
     totalItems: state.totalItems,
     totalPrices: state.totalPrices,
     addToCart,
+    removeFromCart,
   };
 };
 

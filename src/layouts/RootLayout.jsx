@@ -4,13 +4,16 @@ import styles from "./RootLayout.module.css";
 import { useCart } from "../hooks";
 
 function RootLayout() {
-  const { cart, totalPrices, totalItems, addToCart } = useCart();
+  const { cart, totalPrices, totalItems, addToCart, removeFromCart } =
+    useCart();
 
   return (
     <div className={styles.rootLayout}>
       <Navbar />
       <main className={styles.main}>
-        <Outlet context={{ cart, totalItems, totalPrices, addToCart }} />
+        <Outlet
+          context={{ cart, totalItems, totalPrices, addToCart, removeFromCart }}
+        />
       </main>
     </div>
   );

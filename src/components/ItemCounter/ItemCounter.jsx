@@ -5,7 +5,7 @@ import styles from "./ItemCounter.module.css";
 function ItemCounter({ product, cartItem, addToCart, removeFromCart }) {
   return (
     <div className={`${styles.itemCounter} ${cartItem && styles.active} `}>
-      {cartItem && (
+      {cartItem ? (
         <>
           <button
             className={styles.button}
@@ -15,17 +15,28 @@ function ItemCounter({ product, cartItem, addToCart, removeFromCart }) {
           >
             {<Minus size={16} />}
           </button>
-          <span>{cartItem.quantity}</span>
+
+          {cartItem && <span>{cartItem.quantity}</span>}
+
+          <button
+            className={styles.button}
+            onClick={() => {
+              addToCart(product);
+            }}
+          >
+            {<Plus size={16} />}
+          </button>
         </>
+      ) : (
+        <button
+          className={styles.button}
+          onClick={() => {
+            addToCart(product);
+          }}
+        >
+          {<Plus size={16} />}
+        </button>
       )}
-      <button
-        className={styles.button}
-        onClick={() => {
-          addToCart(product);
-        }}
-      >
-        {<Plus size={16} />}
-      </button>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 .card {
-  /* padding: var(--space-8); */
   border-radius: 1rem;
-  /* border: 1px solid black; */
+
   overflow: hidden;
 
   display: flex;

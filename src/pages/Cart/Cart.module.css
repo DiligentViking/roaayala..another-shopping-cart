@@ -1,24 +1,79 @@
-.cartContainer {
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.title {
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.container {
   display: grid;
   gap: var(--space-8);
   align-items: start;
+  grid-template-columns: 1fr;
 }
 
 @media (min-width: 64rem) {
-  .cartContainer {
+  .container {
     grid-template-columns: 2fr 1fr;
   }
 }
 
-@media (min-width: 80rem) {
-  .cartContainer {
-    grid-template-columns: 3fr 1fr;
-  }
-}
-
-.cartItem {
+.items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 
   gap: var(--space-8);
+}
+
+.resume {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.resumeTitle {
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+.resumeLists {
+  list-style: none;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.resumeList {
+  display: flex;
+  flex-direction: column;
+}
+
+.resumeListTitle {
+  font-weight: 600;
+}
+
+.resumeListDetail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.resumeListDetailInfo {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.resumeTotalPrices {
+  text-align: right;
+  font-size: var(--text-lg);
+  font-weight: 600;
 }

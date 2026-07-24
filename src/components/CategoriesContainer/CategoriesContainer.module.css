@@ -16,7 +16,7 @@
 @media (min-width: 64rem) {
   .categories {
     flex-direction: column;
-    background-color: var(--bg-secondary);
+    border: 1px solid var(--bg-secondary);
     padding: var(--space-8);
   }
 }

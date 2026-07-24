@@ -9,38 +9,47 @@ function Cart() {
   return (
     <div>
       <Container>
-        <div className={styles.cartContainer}>
-          <div className={styles.cartItem}>
-            {cart.length === 0 && <p>Empty</p>}
-            {cart.map((item) => (
-              <ProductCard
-                key={item.id}
-                product={item}
-                cart={cart}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
-              />
-            ))}
-          </div>
-          <div className={styles.cartResume}>
-            <h3>Cart details</h3>
-            <ul>
-              {cart.length === 0 && <li>Empty</li>}
+        <div className={styles.wrapper}>
+          <h2 className={styles.title}>Cart</h2>
+          <div className={styles.container}>
+            <div className={styles.items}>
+              {cart.length === 0 && <p>Empty</p>}
               {cart.map((item) => (
-                <li key={item.id}>
-                  <p>{item.title}</p>
-                  <div>
-                    <div>
-                      <span>{item.quantity}</span>
-                      <span>x</span>
-                      <span>{item.price}</span>
-                    </div>
-                    <span>$ {(item.quantity * item.price).toFixed(2)}</span>
-                  </div>
-                </li>
+                <ProductCard
+                  key={item.id}
+                  product={item}
+                  cart={cart}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                />
               ))}
-            </ul>
-            <span>Total prices: $ {totalPrices.toFixed(2)}</span>
+            </div>
+            <div className={styles.resume}>
+              <h3 className={styles.resumeTitle}>Cart details</h3>
+              <ul className={styles.resumeLists}>
+                {cart.length === 0 && <li>Empty</li>}
+                {cart.map((item) => (
+                  <li key={item.id} className={styles.resumeList}>
+                    <p className={styles.resumeListTitle}>{item.title}</p>
+                    <div className={styles.resumeListDetail}>
+                      <div className={styles.resumeListDetailInfo}>
+                        <span className={styles.resumeListDetailInfoQuantity}>
+                          {item.quantity}
+                        </span>
+                        <span>x</span>
+                        <span className={styles.resumeListDetailInfoPrice}>
+                          $ {item.price}
+                        </span>
+                      </div>
+                      <span>$ {(item.quantity * item.price).toFixed(2)}</span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <span className={styles.resumeTotalPrices}>
+                Total prices: $ {totalPrices.toFixed(2)}
+              </span>
+            </div>
           </div>
         </div>
       </Container>

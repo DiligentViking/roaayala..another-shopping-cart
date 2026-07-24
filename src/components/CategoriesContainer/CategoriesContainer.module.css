@@ -6,8 +6,6 @@
   flex-wrap: nowrap;
   gap: var(--space-4);
 
-  overflow-x: auto;
-
   align-self: self-start;
 }
 

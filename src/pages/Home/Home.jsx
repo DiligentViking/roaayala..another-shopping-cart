@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Hero, HomeCategories } from "../../components";
 
-import styles from "./Home.module.css";
-
 function Home() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,10 +32,8 @@ function Home() {
   return (
     <div>
       <Container>
-        <div className={styles.homeWrapper}>
-          <Hero />
-          {!isLoading && !error && <HomeCategories categories={categories} />}
-        </div>
+        <Hero />
+        {!isLoading && !error && <HomeCategories categories={categories} />}
       </Container>
     </div>
   );

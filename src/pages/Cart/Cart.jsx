@@ -4,8 +4,7 @@ import { Container, ProductCard } from "../../components";
 import styles from "./Cart.module.css";
 
 function Cart() {
-  const { cart, totalPrices, totalItems, addToCart, removeFromCart } =
-    useOutletContext();
+  const { cart, totalPrices, addToCart, removeFromCart } = useOutletContext();
 
   return (
     <div>
@@ -23,7 +22,22 @@ function Cart() {
             ))}
           </div>
           <div className={styles.cartResume}>
-            <span>Total items: {totalItems}</span>
+            <h3>Cart detail</h3>
+            <ul>
+              {cart.map((item) => (
+                <li key={item.id}>
+                  <p>{item.title}</p>
+                  <div>
+                    <div>
+                      <span>{item.quantity}</span>
+                      <span>x</span>
+                      <span>{item.price}</span>
+                    </div>
+                    <span>$ {(item.quantity * item.price).toFixed(2)}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
             <span>Total prices: $ {totalPrices.toFixed(2)}</span>
           </div>
         </div>

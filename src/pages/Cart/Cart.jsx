@@ -1,34 +1,32 @@
 import { useOutletContext } from "react-router";
-import { Container, ItemCounter } from "../../components";
+import { Container, ProductCard } from "../../components";
+
+import styles from "./Cart.module.css";
 
 function Cart() {
   const { cart, totalPrices, totalItems, addToCart, removeFromCart } =
     useOutletContext();
 
-  console.log(cart);
-
   return (
     <div>
       <Container>
-        <div>
-          {cart.map((item) => (
-            <div key={item.id}>
-              <img src={item.image} alt={item.title} />
-              <h3>{item.title}</h3>
-
-              <ItemCounter
+        <div className={styles.cartContainer}>
+          <div className={styles.cartItem}>
+            {cart.map((item) => (
+              <ProductCard
+                key={item.id}
                 product={item}
-                cartItem={item}
+                cart={cart}
                 addToCart={addToCart}
                 removeFromCart={removeFromCart}
               />
-              <span>{item.price}</span>
-              <span>{item.quantity}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+          <div className={styles.cartResume}>
+            <span>Total items: {totalItems}</span>
+            <span>Total prices: $ {totalPrices.toFixed(2)}</span>
+          </div>
         </div>
-        <span>Total prices: {totalPrices}</span>
-        <span>Total items: {totalItems}</span>
       </Container>
     </div>
   );

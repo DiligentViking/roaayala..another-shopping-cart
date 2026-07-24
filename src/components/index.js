@@ -9,3 +9,4 @@ export { default as CategoriesContainer } from "./CategoriesContainer/Categories
 export { default as ItemCounter } from "./ItemCounter/ItemCounter.jsx";
 
 export { default as Hero } from "./Hero/Hero.jsx";
+export { default as HomeCategories } from "./HomeCategories/HomeCategories.jsx";

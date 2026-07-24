@@ -8,13 +8,19 @@ import {
 import { useProduct } from "../../hooks";
 
 import styles from "./Shop.module.css";
-import { useOutletContext } from "react-router";
+import { useLocation, useOutletContext } from "react-router";
 
 function Shop() {
+  const location = useLocation();
   const { products, productCategories, isLoading } = useProduct();
-  const [activeCategory, setActiveCategory] = useState(null);
 
   const { cart, addToCart, removeFromCart } = useOutletContext();
+
+  const categoryFromHome = location.state?.selectedCategory;
+
+  const [activeCategory, setActiveCategory] = useState(
+    categoryFromHome || null,
+  );
 
   const displayedProducts = activeCategory
     ? products.filter((product) => product.category === activeCategory)

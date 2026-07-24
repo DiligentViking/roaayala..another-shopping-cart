@@ -7,3 +7,5 @@ export { default as ProductsContainer } from "./ProductsContainer/ProductsContai
 export { default as CategoriesContainer } from "./CategoriesContainer/CategoriesContainer.jsx";
 
 export { default as ItemCounter } from "./ItemCounter/ItemCounter.jsx";
+
+export { default as Hero } from "./Hero/Hero.jsx";

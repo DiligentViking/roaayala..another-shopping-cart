@@ -16,7 +16,7 @@
 
 @media screen and (min-width: 48rem) {
   .container {
-    max-width: var(--container-sm);
+    max-width: var(--container-md);
   }
 }
 

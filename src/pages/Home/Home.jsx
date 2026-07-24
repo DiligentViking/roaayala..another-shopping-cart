@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container } from "../../components";
+import { Container, Hero } from "../../components";
 import { Link } from "react-router";
 import { capitalizeWord } from "../../helpers";
 import { ArrowRight, PackageSearch } from "lucide-react";
@@ -38,11 +38,8 @@ function Home() {
   return (
     <div>
       <Container>
-        {isLoading ? (
-          <p>...Loading</p>
-        ) : error ? (
-          <p>{error}</p>
-        ) : (
+        <div className={styles.homeWrapper}>
+          <Hero />
           <div className={styles.categoriesContainer}>
             {categories.map((category) => (
               <Link
@@ -53,7 +50,7 @@ function Home() {
               >
                 <div className={styles.categoryCard}>
                   <div className={styles.categoryCardCover}>
-                    <PackageSearch size={96} />
+                    <PackageSearch size={64} />
                   </div>
                   <div className={styles.categoryCardActions}>
                     <button className={styles.button}>
@@ -67,7 +64,7 @@ function Home() {
               </Link>
             ))}
           </div>
-        )}
+        </div>
       </Container>
     </div>
   );

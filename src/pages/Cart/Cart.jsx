@@ -11,6 +11,7 @@ function Cart() {
       <Container>
         <div className={styles.cartContainer}>
           <div className={styles.cartItem}>
+            {cart.length === 0 && <p>Empty</p>}
             {cart.map((item) => (
               <ProductCard
                 key={item.id}
@@ -22,8 +23,9 @@ function Cart() {
             ))}
           </div>
           <div className={styles.cartResume}>
-            <h3>Cart detail</h3>
+            <h3>Cart details</h3>
             <ul>
+              {cart.length === 0 && <li>Empty</li>}
               {cart.map((item) => (
                 <li key={item.id}>
                   <p>{item.title}</p>

@@ -1,3 +1,4 @@
+import { capitalizeWord } from "../../helpers";
 import styles from "./CategoriesContainer.module.css";
 
 function CategoriesContainer({
@@ -29,7 +30,7 @@ function CategoriesContainer({
           data-category={category.name}
           className={`${styles.category} ${activeCategory === category.name ? styles.active : ""}`}
         >
-          {category.name}
+          {capitalizeWord(category.name)}
         </li>
       ))}
     </ul>

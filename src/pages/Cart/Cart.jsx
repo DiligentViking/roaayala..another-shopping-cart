@@ -1,10 +1,12 @@
-import { useOutletContext } from "react-router";
 import { Container, ProductCard } from "../../components";
 
 import styles from "./Cart.module.css";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/context";
 
 function Cart() {
-  const { cart, totalPrices, addToCart, removeFromCart } = useOutletContext();
+  const { cart, totalPrices, addToCart, removeFromCart } =
+    useContext(CartContext);
 
   return (
     <div>

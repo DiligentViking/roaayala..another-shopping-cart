@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   CategoriesContainer,
   Container,
@@ -6,15 +6,15 @@ import {
   ProductsContainer,
 } from "../../components";
 import { useProduct } from "../../hooks";
-
 import styles from "./Shop.module.css";
-import { useLocation, useOutletContext } from "react-router";
+import { useLocation } from "react-router";
+import { CartContext } from "../../contexts/context";
 
 function Shop() {
   const location = useLocation();
   const { products, productCategories, isLoading } = useProduct();
 
-  const { cart, addToCart, removeFromCart } = useOutletContext();
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
   const categoryFromHome = location.state?.selectedCategory;
 

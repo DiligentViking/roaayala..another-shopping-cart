@@ -1,4 +1,4 @@
-import { renderHook, waitFor } from "@testing-library/react";
+import { renderHook, waitFor, act } from "@testing-library/react";
 import useProduct from "./useProduct";
 import { test, expect, vi, beforeEach } from "vitest";
 
@@ -8,7 +8,7 @@ const mockData = [
   { id: 3, title: "Item 3", category: "women's clothing" },
 ];
 
-global.fetch = vi.fn();
+globalThis.fetch = vi.fn();
 beforeEach(() => {
   vi.clearAllMocks();
 });
@@ -62,4 +62,31 @@ test("on connection fail", async () => {
 
   expect(result.current.products).toEqual([]);
   expect(result.current.error).toBe("Cannot connect to the server");
+});
+
+test("on refetch", async () => {
+  fetch.mockRejectedValueOnce(new Error("Cannot connect to the server"));
+
+  const { result } = renderHook(() => useProduct());
+
+  await waitFor(() => {
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  expect(result.current.error).toBe("Cannot connect to the server");
+
+  fetch.mockResolvedValueOnce({ ok: true, json: async () => mockData });
+
+  act(() => {
+    result.current.refetchProducts();
+  });
+
+  expect(result.current.isLoading).toBe(true);
+  expect(result.current.error).toBe(null);
+
+  await waitFor(() => {
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  expect(result.current.products).toEqual(mockData);
 });

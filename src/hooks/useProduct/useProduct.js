@@ -59,7 +59,7 @@ const useProduct = () => {
     productCategories,
     isLoading: state.isLoading,
     error: state.error,
-    refecthProducts: fetchProducts,
+    refetchProducts: fetchProducts,
   };
 };
 

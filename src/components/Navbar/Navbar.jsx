@@ -2,13 +2,17 @@ import { NavLink } from "react-router";
 import { Container } from "..";
 import styles from "./Navbar.module.css";
 import { Home, ShoppingCart, Store } from "lucide-react";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/context";
 
-function Navbar({ cart }) {
+function Navbar() {
   const links = [
     { id: 0, path: "/", name: "Home", icon: <Home size={20} /> },
     { id: 1, path: "shop", name: "Shop", icon: <Store size={20} /> },
     { id: 2, path: "cart", name: "Cart", icon: <ShoppingCart size={20} /> },
   ];
+
+  const { cart } = useContext(CartContext);
   return (
     <nav className={styles.navbar}>
       <Container>

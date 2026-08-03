@@ -24,7 +24,7 @@ function ProductCard({ product, addToCart, removeFromCart, cart }) {
         <div className={styles.cardActions}>
           <ItemCounter
             product={product}
-            cartItem={cartItem}
+            itemQuantity={cartItem?.quantity}
             addToCart={addToCart}
             removeFromCart={removeFromCart}
           />

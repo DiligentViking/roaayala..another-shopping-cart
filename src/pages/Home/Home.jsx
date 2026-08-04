@@ -5,35 +5,55 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [retry, setRetry] = useState(1);
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products/categories")
-      .then((res) => {
-        if (!res.ok) throw new Error("Cannot fetch categories");
+  function retryFetch() {
+    setRetry(() => retry + 1);
+  }
 
-        return res.json();
-      })
-      .then((result) => {
-        const categories = result.map((category) => ({
-          id: crypto.randomUUID(),
-          category,
-        }));
+  useEffect(
+    () => () => {
+      setIsLoading(true);
+      setError(null);
 
-        setCategories(categories);
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+      fetch("https://fakestoreapi.com/products/categories")
+        .then((res) => {
+          if (!res.ok) throw new Error("Cannot fetch categories");
+
+          return res.json();
+        })
+        .then((result) => {
+          const categories = result.map((category) => ({
+            id: crypto.randomUUID(),
+            category,
+          }));
+
+          setCategories(categories);
+        })
+        .catch((error) => {
+          setError(error.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    },
+    [retry],
+  );
 
   return (
     <div>
       <Container>
         <Hero />
-        {!isLoading && !error && <HomeCategories categories={categories} />}
+        {isLoading ? (
+          <p role="status">Loading...</p>
+        ) : error ? (
+          <>
+            <p role="alert">Failed to load categories. Error: {error}</p>
+            <button onClick={retryFetch}>Try again?</button>
+          </>
+        ) : (
+          <HomeCategories categories={categories} />
+        )}
       </Container>
     </div>
   );

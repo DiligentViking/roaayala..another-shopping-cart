@@ -12,7 +12,8 @@ import { CartContext } from "../../contexts/context";
 
 function Shop() {
   const location = useLocation();
-  const { products, productCategories, isLoading } = useProduct();
+  const { products, productCategories, isLoading, error, refetchProducts } =
+    useProduct();
 
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
@@ -32,6 +33,11 @@ function Shop() {
         <div className={styles.shopContainer}>
           {isLoading ? (
             <>Loading...</>
+          ) : error ? (
+            <>
+              <p role="alert">Network Error: {error}</p>
+              <button onClick={refetchProducts}>Try Again?</button>
+            </>
           ) : (
             <CategoriesContainer
               productCategories={productCategories}

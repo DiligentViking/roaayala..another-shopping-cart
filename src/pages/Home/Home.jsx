@@ -5,14 +5,14 @@ function Home() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [retry, setRetry] = useState(1);
+  const [retry, setRetry] = useState(0);
 
   function retryFetch() {
-    setRetry(() => retry + 1);
+    setRetry((prevRetry) => prevRetry + 1);
   }
 
-  useEffect(
-    () => () => {
+  useEffect(() => {
+    function fetchData() {
       setIsLoading(true);
       setError(null);
 
@@ -36,9 +36,10 @@ function Home() {
         .finally(() => {
           setIsLoading(false);
         });
-    },
-    [retry],
-  );
+    }
+
+    fetchData();
+  }, [retry]);
 
   return (
     <div>

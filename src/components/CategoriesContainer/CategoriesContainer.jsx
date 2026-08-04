@@ -26,11 +26,11 @@ function CategoriesContainer({
       </li>
       {productCategories.map((category) => (
         <li
-          key={category.id}
-          data-category={category.name}
-          className={`${styles.category} ${activeCategory === category.name ? styles.active : ""}`}
+          key={category}
+          data-category={category}
+          className={`${styles.category} ${activeCategory === category ? styles.active : ""}`}
         >
-          {capitalizeWord(category.name)}
+          {capitalizeWord(category)}
         </li>
       ))}
     </ul>

@@ -1,16 +1,5 @@
 import { useReducer } from "react";
 
-const calculateTotals = (cartData) => {
-  return cartData.reduce(
-    (totals, item) => {
-      totals.totalItems += item.quantity;
-      totals.totalPrices += item.quantity * item.price;
-      return totals;
-    },
-    { totalItems: 0, totalPrices: 0 },
-  );
-};
-
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_ITEM": {
@@ -30,13 +19,9 @@ const cartReducer = (state, action) => {
         newData = [...state.data, { ...product, quantity: 1 }];
       }
 
-      const newTotals = calculateTotals(newData);
-
       return {
         ...state,
         data: newData,
-        totalItems: newTotals.totalItems,
-        totalPrices: newTotals.totalPrices,
       };
     }
     case "REMOVE_ITEM": {
@@ -56,12 +41,9 @@ const cartReducer = (state, action) => {
         newData = state.data.filter((item) => item.id !== itemId);
       }
 
-      const newTotals = calculateTotals(newData);
       return {
         ...state,
         data: newData,
-        totalItems: newTotals.totalItems,
-        totalPrices: newTotals.totalPrices,
       };
     }
 
@@ -74,8 +56,6 @@ const cartReducer = (state, action) => {
 const useCart = () => {
   const [state, dispatch] = useReducer(cartReducer, {
     data: [],
-    totalItems: 0,
-    totalPrices: 0,
   });
 
   const addToCart = (product) =>
@@ -85,12 +65,22 @@ const useCart = () => {
     dispatch({ type: "REMOVE_ITEM", payload: itemId });
   };
 
+  const calculateTotals = () => {
+    return state.data.reduce(
+      (totals, item) => {
+        totals.totalItems += item.quantity;
+        totals.totalPrices += item.quantity * item.price;
+        return totals;
+      },
+      { totalItems: 0, totalPrices: 0 },
+    );
+  };
+
   return {
     cart: state.data,
-    totalItems: state.totalItems,
-    totalPrices: state.totalPrices,
     addToCart,
     removeFromCart,
+    calculateTotals,
   };
 };
 

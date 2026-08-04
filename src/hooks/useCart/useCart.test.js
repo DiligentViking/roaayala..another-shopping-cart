@@ -6,8 +6,11 @@ test("at start cart must be empty", () => {
   const { result } = renderHook(() => useCart());
 
   expect(result.current.cart).toEqual([]);
-  expect(result.current.totalItems).toEqual(0);
-  expect(result.current.totalPrices).toEqual(0);
+
+  const { totalItems, totalPrices } = result.current.calculateTotals();
+
+  expect(totalItems).toEqual(0);
+  expect(totalPrices).toEqual(0);
 });
 
 test("success added to cart", () => {
@@ -16,10 +19,12 @@ test("success added to cart", () => {
 
   act(() => result.current.addToCart(product));
 
+  const { totalItems, totalPrices } = result.current.calculateTotals();
+
   expect(result.current.cart.length).toEqual(1);
   expect(result.current.cart[0].quantity).toEqual(1);
-  expect(result.current.totalItems).toEqual(1);
-  expect(result.current.totalPrices).toEqual(100);
+  expect(totalItems).toEqual(1);
+  expect(totalPrices).toEqual(100);
 });
 
 test("quantity increase if a item added again", () => {
@@ -31,10 +36,12 @@ test("quantity increase if a item added again", () => {
     result.current.addToCart(product);
   });
 
+  const { totalItems, totalPrices } = result.current.calculateTotals();
+
   expect(result.current.cart.length).toEqual(1);
   expect(result.current.cart[0].quantity).toEqual(2);
-  expect(result.current.totalItems).toEqual(2);
-  expect(result.current.totalPrices).toEqual(200);
+  expect(totalItems).toEqual(2);
+  expect(totalPrices).toEqual(200);
 });
 
 test("remove item if quantity below one", () => {
@@ -46,11 +53,13 @@ test("remove item if quantity below one", () => {
     result.current.removeFromCart(product.id);
   });
 
+  const { totalItems, totalPrices } = result.current.calculateTotals();
+
   expect(result.current.cart).toEqual([]);
   expect(result.current.cart.length).toEqual(0);
   expect(result.current.cart[0]).toEqual(undefined);
-  expect(result.current.totalItems).toEqual(0);
-  expect(result.current.totalPrices).toEqual(0);
+  expect(totalItems).toEqual(0);
+  expect(totalPrices).toEqual(0);
 });
 
 test("decrease selected item", () => {
@@ -63,8 +72,10 @@ test("decrease selected item", () => {
     result.current.removeFromCart(product.id);
   });
 
+  const { totalItems, totalPrices } = result.current.calculateTotals();
+
   expect(result.current.cart.length).toEqual(1);
   expect(result.current.cart[0].quantity).toEqual(1);
-  expect(result.current.totalItems).toEqual(1);
-  expect(result.current.totalPrices).toEqual(100);
+  expect(totalItems).toEqual(1);
+  expect(totalPrices).toEqual(100);
 });

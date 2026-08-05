@@ -5,9 +5,14 @@ import { ItemCounter } from "../";
 
 function ProductCard({ product, addToCart, removeFromCart, cart }) {
   const cartItem = cart.find((item) => item.id === product.id);
+
   return (
     <div className={styles.card}>
-      <Link className={styles.cardLink} to={`/product/${product.id}`}>
+      <Link
+        className={styles.cardLink}
+        to={`/product/${product.id}`}
+        state={{ product }}
+      >
         <div className={styles.cardCover}>
           <img
             className={styles.cardCoverImage}

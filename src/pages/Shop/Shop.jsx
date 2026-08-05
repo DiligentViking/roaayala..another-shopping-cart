@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   CategoriesContainer,
   Container,
@@ -7,21 +7,19 @@ import {
 } from "../../components";
 import { useProduct } from "../../hooks";
 import styles from "./Shop.module.css";
-import { useLocation } from "react-router";
+import { useSearchParams } from "react-router";
 import { CartContext } from "../../contexts/context";
 
 function Shop() {
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { products, productCategories, isLoading, error, refetchProducts } =
     useProduct();
 
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
 
-  const categoryFromHome = location.state?.selectedCategory;
+  const activeCategory = searchParams.get("category");
 
-  const [activeCategory, setActiveCategory] = useState(
-    categoryFromHome || null,
-  );
+  console.log({ activeCategory });
 
   const displayedProducts = activeCategory
     ? products.filter((product) => product.category === activeCategory)
@@ -42,8 +40,10 @@ function Shop() {
             <CategoriesContainer
               productCategories={productCategories}
               activeCategory={activeCategory}
-              setActiveCategory={(activeCategory) =>
-                setActiveCategory(activeCategory)
+              setActiveCategory={(category) =>
+                category === null
+                  ? setSearchParams("")
+                  : setSearchParams(`?category=${category}`)
               }
             />
           )}

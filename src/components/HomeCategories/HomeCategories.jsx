@@ -11,7 +11,7 @@ function HomeCategories({ categories }) {
         {categories.map((category) => (
           <Link
             key={category.id}
-            to="/shop"
+            to={`/shop?category=${category.category}`}
             state={{ selectedCategory: category.category }}
             className={styles.link}
           >

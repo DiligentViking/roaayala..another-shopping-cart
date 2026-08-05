@@ -12,7 +12,10 @@ function Navbar() {
     { id: 2, path: "cart", name: "Cart", icon: <ShoppingCart size={20} /> },
   ];
 
-  const { cart } = useContext(CartContext);
+  const { cart, calculateTotals } = useContext(CartContext);
+
+  const { totalItems } = calculateTotals();
+
   return (
     <nav className={styles.navbar}>
       <Container>
@@ -32,7 +35,7 @@ function Navbar() {
                       <span className={styles.name}>{link.name}</span>
 
                       {link.name === "Cart" && cart.length > 0 && (
-                        <span className={styles.counter}>{cart.length}</span>
+                        <span className={styles.counter}>{totalItems}</span>
                       )}
                     </>
                   </li>

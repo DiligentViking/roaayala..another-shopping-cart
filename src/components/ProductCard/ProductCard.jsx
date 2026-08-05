@@ -5,9 +5,14 @@ import { ItemCounter } from "../";
 
 function ProductCard({ product, addToCart, removeFromCart, cart }) {
   const cartItem = cart.find((item) => item.id === product.id);
+
   return (
-    <Link className={styles.cardLink}>
-      <div className={styles.card}>
+    <div className={styles.card}>
+      <Link
+        className={styles.cardLink}
+        to={`/product/${product.id}`}
+        state={{ product }}
+      >
         <div className={styles.cardCover}>
           <img
             className={styles.cardCoverImage}
@@ -15,22 +20,22 @@ function ProductCard({ product, addToCart, removeFromCart, cart }) {
             alt={product.title}
           />
         </div>
+      </Link>
 
-        <div className={styles.cardInfo}>
-          <h3 className={styles.cardInfoTitle}>{product.title}</h3>
-          <span className={styles.cardInfoPrice}>$ {product.price}</span>
-        </div>
-
-        <div className={styles.cardActions}>
-          <ItemCounter
-            product={product}
-            itemQuantity={cartItem?.quantity}
-            addToCart={addToCart}
-            removeFromCart={removeFromCart}
-          />
-        </div>
+      <div className={styles.cardInfo}>
+        <h3 className={styles.cardInfoTitle}>{product.title}</h3>
+        <span className={styles.cardInfoPrice}>$ {product.price}</span>
       </div>
-    </Link>
+
+      <div className={styles.cardActions}>
+        <ItemCounter
+          product={product}
+          itemQuantity={cartItem?.quantity}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+        />
+      </div>
+    </div>
   );
 }
 

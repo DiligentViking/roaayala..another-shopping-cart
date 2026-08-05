@@ -3,13 +3,15 @@ import { useCart } from "../hooks";
 import { CartContext } from "./context";
 
 function CartProvider({ children }) {
-  const { cart, addToCart, removeFromCart, calculateTotals } = useCart();
+  const { cart, totalItems, totalPrices, addToCart, removeFromCart } =
+    useCart();
 
   const cartSignal = {
     cart,
+    totalItems,
+    totalPrices,
     addToCart,
     removeFromCart,
-    calculateTotals,
   };
   return (
     <CartContext.Provider value={cartSignal}>{children}</CartContext.Provider>

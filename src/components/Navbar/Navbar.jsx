@@ -12,9 +12,7 @@ function Navbar() {
     { id: 2, path: "cart", name: "Cart", icon: <ShoppingCart size={20} /> },
   ];
 
-  const { cart, calculateTotals } = useContext(CartContext);
-
-  const { totalItems } = calculateTotals();
+  const { cart, totalItems } = useContext(CartContext);
 
   return (
     <nav className={styles.navbar}>

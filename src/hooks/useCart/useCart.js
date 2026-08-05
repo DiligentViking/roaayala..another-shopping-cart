@@ -58,6 +58,15 @@ const useCart = () => {
     data: [],
   });
 
+  const { totalItems, totalPrices } = state.data.reduce(
+    (totals, item) => {
+      totals.totalItems += item.quantity;
+      totals.totalPrices += item.quantity * item.price;
+      return totals;
+    },
+    { totalItems: 0, totalPrices: 0 },
+  );
+
   const addToCart = (product) =>
     dispatch({ type: "ADD_ITEM", payload: product });
 
@@ -65,22 +74,12 @@ const useCart = () => {
     dispatch({ type: "REMOVE_ITEM", payload: itemId });
   };
 
-  const calculateTotals = () => {
-    return state.data.reduce(
-      (totals, item) => {
-        totals.totalItems += item.quantity;
-        totals.totalPrices += item.quantity * item.price;
-        return totals;
-      },
-      { totalItems: 0, totalPrices: 0 },
-    );
-  };
-
   return {
     cart: state.data,
+    totalItems,
+    totalPrices,
     addToCart,
     removeFromCart,
-    calculateTotals,
   };
 };
 

@@ -5,10 +5,8 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/context";
 
 function Cart() {
-  const { cart, addToCart, removeFromCart, calculateTotals } =
+  const { cart, totalPrices, addToCart, removeFromCart } =
     useContext(CartContext);
-
-  const { totalPrices } = calculateTotals();
 
   return (
     <div>
